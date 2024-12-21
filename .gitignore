@@ -1,0 +1,31 @@
+# Ignorer les fichiers générés
+backend/node_modules/
+backend/dist/
+# Ignorer les fichiers de configuration sensibles
+backend/.env/
+backend/vercel.json
+# IDE-specific files
+backend/.vscode/
+backend/.idea/
+backend/.git
+backend/.gitignore
+
+
+
+
+frontend/.git
+frontend/.gitignore
+# Ignorer les fichiers de configuration sensibles
+frontend/.env/
+# IDE-specific files
+frontend/.vscode/
+frontend/.idea/
+# Ignorer les fichiers générés
+frontend/node_modules/
+
+frontend/README
+
+
+
+
+
