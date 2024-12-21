@@ -206,15 +206,29 @@ export const useProductStore = defineStore('productStore', () => {
 
 ### 1. Routes d'API
 
-| **Méthode** | **Endpoint**                      | **Description**                                                                |
+| **Méthode** | **Endpoint**                      | **Description**                                                                |        
 |-------------|-----------------------------------|--------------------------------------------------------------------------------|
-| `GET`       | `/analytics/total_sales`          | Retourne le montant total des ventes pour la période sélectionnée.             |
-| `GET`       | `/analytics/trending_products`    | Retourne les 5 produits les plus vendus aves leurs noms, triés par quantité.   |
-| `GET`       | `/analytics/category_sales`       | Retourne la répartition des ventes par catégorie, exprimée en pourcentage.     |
-| `GET`       | `/products/table`                 | Retourne une liste des produits répertoriés, avec leur nombre total de ventes. |
-| `GET`       | `/analytics/total_sales_quantity` | Retourne le nombre total de ventes pour chaque produit.                        |
-| `POST`      | `/auth/signup`                    | Permet à un nouvel utilisateur de s'inscrire.                                  |
-| `GET`       | `/auth/login`                     | Permet à un utilisateur existant de se connecter.                              |
+| `GET`       | `/analytics/total_sales`          | Retourne le montant total des ventes pour la période sélectionnée.             | 
+| `GET`       | `/analytics/trending_products`    | Retourne les 5 produits les plus vendus aves leurs noms, triés par quantité.   |             
+| `GET`       | `/analytics/category_sales`       | Retourne la répartition des ventes par catégorie, exprimée en pourcentage.     |             
+| `GET`       | `/products/table`                 | Retourne une liste des produits répertoriés, avec leur nombre total de ventes. |             
+| `GET`       | `/analytics/total_sales_quantity` | Retourne le nombre total de ventes pour chaque produit.                        |             
+| `POST`      | `/auth/signup`                    | Retourne à un nouvel utilisateur un message de succès d'inscription.           |             
+| `POST`      | `/auth/login`                     | Retourne un token et un userId à l'utilisateur qui s'est inscrit.              |             
+
+
+### 2. Paramètres (Query) de toutes les requetes à  l'exception du login et du signup 
+| Paramètre   | Type typescript | Obligatoire | Description                                   |
+|-------------|-----------------|-------------|-----------------------------------------------|
+| `startDate` | `Date`          | Oui         | Début de la période (format ISO: 2024-12-12). |
+| `endDate`   | `Date`          | Oui         | Fin de la période (format ISO: 2024-12-12).   |
+
+### 3. Paramètres (Body) des requetes du login et du signup
+| Paramètre   | Type typescript | Obligatoire | Description               |
+|-------------|-----------------|-------------|---------------------------|
+| `email`     | `string`        | Oui         | Adresse e-mail unique.    |
+| `password`  | `string`        | Oui         | Mot de passe sécurisé.    |
+
 
 **NB:** Dans le calcul des statistiques, le champ 'total_sales' de la collection sale fournit initialement dans le dataset n'a pas été pris 
 en compte parce que les valeurs ne réflètent pas exactement prix * quantité. Il a été recalculé sans modification du dataset.
@@ -231,30 +245,6 @@ en compte parce que les valeurs ne réflètent pas exactement prix * quantité. 
 {
   "total_sales": 150000
 }
-```
-
-### `GET /analytics/trending_products`
-
-**Exemple de réponse :**
-
-```json
-[
-  {
-    "name": "TV",
-    "category": "Electronics",
-    "totalQuantity": 25000
-  },
-  {
-    "name": "Graphic Novel",
-    "category": "books",
-    "totalQuantity": 2000
-  },
-  {
-    "name": "Salad Spinner",
-    "category": "Kitchen Tools",
-    "totalQuantity": 250
-  }
-]
 ```
 
 ### `GET /analytics/category_sales`
@@ -274,6 +264,27 @@ en compte parce que les valeurs ne réflètent pas exactement prix * quantité. 
 ]
 ```
 
+### `POST /auth/login`
+
+**Exemple de réponse :**
+
+```json
+  {
+     "userId": "6766d1996e14a61c3f1f1a1e",
+     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NjZkMTk"
+  }
+```
+
+### `POST /auth/signup`
+
+**Exemple de réponse :**
+
+```json
+  {
+   "message": "Utilisateur créé !"
+  }
+```
+
 ---
 
 ## Démonstration
@@ -290,7 +301,5 @@ Le projet est exécuté localement pour l'instant. Une démo est enregistrée so
 
 ---
 
-## Licence
 
-Ce projet est sous licence **MIT**.
 

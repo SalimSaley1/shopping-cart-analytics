@@ -2,24 +2,14 @@
   <q-layout view="hHh lpR fFf">
     <q-header elevated>
       <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
+        <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
         <q-toolbar-title>
-          <div class="absolute-center">
-            <q-icon name="shopping_cart" /> Dashboard
-          </div>
+          <div class="absolute-center"><q-icon name="shopping_cart" /> Dashboard</div>
         </q-toolbar-title>
         <div v-if="storeUserLogin.currentUser">
           <!-- <h5>welcome, {{ storeUserLogin.currentUser.email }}</h5> -->
-          <h5>welcome, {{ storeUserLogin.currentUser.email }}</h5>
+          <!--<h5>welcome, {{ storeUserLogin.currentUser.email }}</h5> -->
         </div>
-
       </q-toolbar>
     </q-header>
 
@@ -55,18 +45,18 @@ const navList = [
   {
     title: 'Login',
     icon: 'login',
-    link: '/login'
+    link: '/login',
   },
   {
     title: 'Register',
     icon: 'person_add',
-    link: '/signup'
-  }
+    link: '/signup',
+  },
 ]
 
 const leftDrawerOpen = ref(false)
 
-function toggleLeftDrawer () {
+function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
 }
 </script>
